@@ -1,0 +1,17 @@
+<% content_for(:header_title) do %>
+やること一覧 - 『こーびっとさん』
+<% end %>
+
+<div id="todoList">
+	<div class="title">
+		やること一覧
+	</div>
+	<div class="contents todo_entry">
+		<div class="icon_explain">
+			現在はβ版のため登録できるタスクは１０個までとなっております。cobit3エンジンが処理する前であれば変更可能ですが、処理後の取り消しはできませんのででご注意ください。
+		</div>
+		
+		<%= render :partial => 'todo_list' %>
+		
+	</div>
+</div>

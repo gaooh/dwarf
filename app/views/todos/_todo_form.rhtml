@@ -1,0 +1,6 @@
+<table id="todo_<%= @todo.id %>" class="todo">
+	<tr>
+		<td><%= check_box("todo", "finish_flag") %> </td>
+		<td><%= in_place_editor_field :todo, 'todo', {}, { :save_text=>"保存", :cancel_text=>"取消" } %></td>
+	</tr>
+</table>

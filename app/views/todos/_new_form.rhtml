@@ -1,0 +1,7 @@
+<table id="todo_<%= @todo.id %>" class="todo">
+	<tr>
+		<td><%= check_box("todo", "finish_flag") %> </td>
+		<td><%= text_field("todo", "todo") %> </td>
+		<td><%= submit_tag '追加' %></td>
+	</tr>
+</table>

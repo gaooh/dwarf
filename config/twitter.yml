@@ -1,0 +1,6 @@
+development:
+  login: cobit3
+  password: gaoohgaooh
+production:
+  login: cobit3
+  password: gaoohgaooh

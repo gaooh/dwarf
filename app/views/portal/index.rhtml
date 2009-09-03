@@ -1,0 +1,153 @@
+<!--■■■　ニュースとか説明とか　■■■-->
+			<div id="top_contents">
+
+				<div id="top_contents_left">
+
+<!--■■■　ニュース　■■■-->
+					<div id="news">
+						<div class="title">
+							ニュースです。
+						</div>
+						<div class="contents">
+							<ul>
+								<li>オープンしました。</li>
+								<li>プレスリリースは<a href="/images/pr.gif">こちら</a></li>
+							</ul>
+						</div>
+					</div>
+					
+<!--■■■　説明　■■■-->
+					<div id="explain">
+						<div class="title">
+							こーびっとさんのご紹介
+						</div>
+						<div class="contents">
+							<p>クラウドソーシングサービス『こーびっとさん』へようこそ</p>
+							実生活での日々のToDoを何処かの誰かがやってくれるシステムです。
+							<ul>
+								<li><%= link_to image_tag('explain/exp_01.gif', :alt => "ToDoを登録して"), :controller => :todos, :action => :list %></li>
+								<li><img src="images/explain/exp_02.gif" alt="しばらく待っていると" /></li>
+								<li><a href="#status"><img src="images/explain/exp_03.gif" alt="co-bit3エンジンが稼働し" /></a></li>
+								<li><img src="images/explain/exp_04.gif" alt="さらに待っていると" /></li>
+								<li><a href="#todo"><img src="images/explain/exp_05.gif" alt="ToDoが完了しています" /></a></li>
+							</ul>
+							<p>本来ならあなたがやるべきToDoを、なんと「Co-Bit3」エンジンが適切に処理をし、何処かの誰かがやってくれた結果をあなたに報告してくれます。</p>
+						</div>
+					</div>
+				</div>
+
+
+<!--■■■　右側　■■■-->
+				<div id="top_contents_right">
+<!--■■■　バナー　■■■-->
+					<div id="ad">
+						<p>↓ドリコムの開発者たちのもうひとつの顔↓</p>
+						<div class="banner">
+							<a href="http://hm11.drecom.co.jp" target="_blank"><%= image_tag 'hm11.gif'%></a>
+						</div>
+					</div>
+
+
+<!--■■■　ログイン　■■■-->
+					<div id="login">
+						<% if signin? %>
+							<div class="loginnow">
+								<%= link_to nickname, :controller => :todos, :action => :list, :alt => "マイページ" %>
+								&nbsp;でログイン中！
+							</div>
+
+							<div class="tomypage">
+								<%= link_to image_tag('mypage.gif', :alt => "マイページへ"), :controller => :todos, :action => :list %>
+							</div>
+							<div class="tologout">
+								<%= link_to image_tag('logout.gif', :alt => "ログアウトする"), :controller => :account, :action => :signout %>
+							</div>
+						<% else %>
+							ログインはこちら
+							<div class="form">
+								<% form_tag :controller => :account, :action=> "login" do %>
+									<p><label for="user_nickname">ニックネーム</label><br/>
+									<%= text_field 'user', 'nickname'  %></p>
+
+									<p><label for="user_password">パスワード</label><br/>
+									<%= password_field 'user', 'password'  %></p>
+
+								    <input type="submit" name="login" value="&nbsp;ログイン&nbsp;" class="primary" />
+								<% end %>
+							</div>
+							<div class="form_right">
+								※ニックネーム、パスワードを忘れた方は、ユーザ登録をやり直してください。
+							</div>
+							<div class="signup">
+								<%= link_to image_tag('signup.png', :alt => "ユーザ登録はこちら"), :controller => 'account', :action => 'new'%>
+							</div>
+							</div>
+						<% end %>
+					</div>
+				</div>
+
+			<div class="cl">&nbsp;</div>
+
+<!--■■■　最近の活躍　■■■-->
+			<% cache 'portal_cobit3' do -%>
+			<div id="todo">
+				<div class="title">
+					こーびっとさんの最近の活躍
+					<div class="more"><%= link_to 'もっと見る', :action => :done_list %></div>
+				</div>
+				<div class="contents">
+					<ul class="todo_entry">
+						<% for @todo in @todos %>
+							<li class="done">
+								<span class="todo_title"><%= link_star_to(@todo) %></span>
+								<span class="author">
+									by&nbsp;<%= link_to @todo.user.nickname, :controller => :todos, :action => :user, :id => @todo.user.nickname %>
+								</span>
+							</li>
+								<% unless @todo.todo_histories.empty? %>
+								  	<ul>
+								  	<% for history in @todo.todo_histories %>
+										<li><%= history.message %> 
+											<%= image_tag url_for_file_column(history.photo, 'filename', 'thumb')  unless history.photo.nil? %></li>
+								  	<% end %>
+								    </ul>
+								<% end %>
+						<% end %>
+				</ul>
+				<div class="icon_explain">
+					<ul>
+						<li class="done">「Co-Bit3」エンジンにより、ToDoが完了したものです。</li>	
+						<li class="undo">未処理のToDoです。</li>
+						<li class="report">「Co-Bit3」エンジンにより、どのように処理したかのレポートです。なぜ靴アイコンなのかは謎。</li>
+					</ul>
+				</div>
+				<div class="more"><a href="report.html">もっと見る</a></div>
+			</div>
+
+<!--■■■　稼働状況　■■■-->
+
+			<div id="status">
+				<div class="title">
+					Co-Bit3の稼働状況
+				</div>
+
+				<div id="twitter">
+					<div class="more">こーびっとさんのささやき</div>
+					<% for twitter in @twitters %>
+						<%= twitter %><br>
+					<% end %>
+				</div>
+
+				<div id="graph">
+					<div class="more">稼働状況グラフ</div>
+					<%= link_to image_tag('graph.gif', :alt => "稼働状況グラフはこちら"), :action => :graph %>
+				</div>
+
+				<div id="cobits_status">
+					<div class="more">ステータス</div>
+					<img src="/images/status/3.gif" alt="ちょっと、タイム。ちかれた。" />
+				</div>
+			</div>
+			<% end -%>
+
+			

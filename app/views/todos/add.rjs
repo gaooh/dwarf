@@ -1,0 +1,1 @@
+page.replace_html 'todo_list', render(:partial => 'todo_list')

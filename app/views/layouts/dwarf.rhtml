@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head profile="http://purl.org/net/ns/metaprof">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta name="author" content="co-bit3.drecom.jp">
+<%= javascript_include_tag :defaults %>
+
+<%= stylesheet_link_tag '0-import' %>
+<%= stylesheet_link_tag 'module/mod_gNavi/mod_gNavi' %>
+<%= stylesheet_link_tag 'module/mod_calendar' %>
+<%= stylesheet_link_tag 'app' %>
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="<%= url_for(:controller => 'portal', :action => 'rss') %>" />
+
+<meta name="description" content="cobit3">
+<title>cobit3</title>
+</head>
+
+<body class="cayegory single">
+<div id="header">
+	<p class="siteName"><a href="#">Co-bit3</a></p>
+	<p class="description">クラウドソーシングサービス</p>
+	<ul id="globalNavi">
+		<li><%= link_to 'お仕事', :controller => :dwarf_work, :action => :index%></li>
+		<li><%= link_to 'ログアウト', :controller => 'account', :action => 'signout' %></li>
+	</ul>
+</div>
+<div id="content">
+	<div id="main">
+		
+		<%= render :partial => 'layouts/message' %>
+		
+		<%= yield  %>
+			
+	</div>
+
+</div>
+<!--end content-->
+<div id="footer">
+	<ul class="support">
+		<li>Powered by Drecom</li>
+	</ul>
+	<address>
+	Copyright © Gaooh All Rights Reserved.
+	</address>
+</div>
+
+</body></html>

@@ -1,0 +1,42 @@
+<% content_for(:header_title) do %>
+<%= @user.nickname %>のやること - 『こーびっとさん』
+<% end %>
+
+<div id="todoList">
+	<div class="title">
+		<%= @user.nickname %>のやること一覧
+	</div>
+	<div class="contents todo_entry">
+		<ul>
+			<% for @todo in @todos %>
+			<li class="<% if @todo.finish_flag %>done<% else %>undo<% end %>">
+				<span class="todo_title">
+					<% if @todo.finish_flag %>
+						<s><%= @todo.todo %></s>
+					<% elsif @todo.todo.nil? || @todo.todo.empty? %>
+						&nbsp;
+					<% else %>
+						<%= @todo.todo %>
+					<% end %>
+				</span>
+			</li>
+				<% unless @todo.todo_histories.empty? %>
+				  	<ul>
+				  	<% for history in @todo.todo_histories %>
+						<li><%= history.message %> 
+							<%= image_tag url_for_file_column(history.photo, 'filename', 'thumb')  unless history.photo.nil? %></li>
+				  	<% end %>
+				    </ul>
+			   <% end %>
+			<% end %>
+		</ul>		
+		
+		<div class="icon_explain">
+			<ul>
+				<li class="done">「Co-Bit3」エンジンにより、ToDoが完了したものです。</li>	
+				<li class="undo">未処理のToDoです。</li>
+				<li class="report">「Co-Bit3」エンジンにより、どのように処理したかのレポートです。なぜ靴アイコンなのかは謎。</li>
+			</ul>
+		</div>
+	</div>
+</div>

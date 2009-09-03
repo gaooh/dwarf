@@ -1,0 +1,22 @@
+<%= error_messages_for 'user' %>
+
+<!--[form:user]-->
+<p><label for="user_openid_url">Openid url</label><br/>
+<%= text_field 'user', 'openid_url'  %></p>
+
+<p><label for="user_nickname">Nickname</label><br/>
+<%= text_field 'user', 'nickname'  %></p>
+
+<p><label for="user_password">Password</label><br/>
+<%= password_field 'user', 'password'  %></p>
+
+<p><label for="user_created_at">Created at</label><br/>
+<%= datetime_select 'user', 'created_at'  %></p>
+
+<p><label for="user_updated_at">Updated at</label><br/>
+<%= datetime_select 'user', 'updated_at'  %></p>
+
+<p><label for="user_deleted_at">Deleted at</label><br/>
+<%= datetime_select 'user', 'deleted_at'  %></p>
+<!--[eoform:user]-->
+

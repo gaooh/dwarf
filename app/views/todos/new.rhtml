@@ -1,0 +1,8 @@
+<h2>New todo</h2>
+
+<% form_tag :action => 'create' do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "作成" %>
+<% end %>
+
+<%= link_to 'Back', :action => 'list' %>

@@ -1,0 +1,13 @@
+<%= error_messages_for 'todo_history' %>
+
+<%= hidden_field 'todo_history', 'todo_id', :value => @todo.id %>
+<span id="photoIdForm"></span>
+
+<!--[form:todo_history]-->
+<p><label for="todo_history_message">メッセージ</label><br/>
+<%= text_field 'todo_history', 'message'  %></p>
+
+<p><label for="todo_history_message">解決？</label><br/>
+<%= check_box "todo", "finish_flag" %>バッチリ解決！</p>
+
+<!--[eoform:todo_history]-->

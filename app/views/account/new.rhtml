@@ -1,0 +1,15 @@
+<div class="cl">&nbsp;</div>	
+<div id="login" class="page">
+	ユーザを新規作成する
+	
+	<div class="form_right">
+		<%= link_to '利用規約', { :controller => :portal, :action => :term }, :target=>"_blank" %>及び
+		<a href="http://www.drecom.co.jp/privacy/" target="_blank">個人情報保護方針</a>に同意の上、ユーザを作成してください。<br />
+	ニックネーム、パスワードを忘れた方は、ユーザ登録をやり直してください。</div>
+	
+		<% form_tag :action => 'create' do %>
+		  <%= render :partial => 'new_form' %>
+		  <%= submit_tag "登録" %>
+		<% end %>
+	</div>
+</div>

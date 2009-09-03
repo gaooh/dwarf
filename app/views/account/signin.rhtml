@@ -1,0 +1,20 @@
+<div id="login" class="page">
+	ログインはこちら
+		<div class="form">
+			<% form_tag :controller => :account, :action=> "login" do %>
+				<p><label for="user_nickname">ニックネーム</label><br/>
+				<%= text_field 'user', 'nickname'  %></p>
+
+				<p><label for="user_password">パスワード</label><br/>
+				<%= password_field 'user', 'password'  %></p>
+
+			    <input type="submit" name="login" value="&nbsp;ログイン&nbsp;" class="primary" />
+			<% end %>
+		</div>
+		<div class="form_right">
+			※ニックネーム、パスワードを忘れた方は、ユーザ登録をやり直してください。
+		</div>
+		<div class="signup">
+			<%= link_to image_tag('signup.png', :alt => "ユーザ登録はこちら"), :controller => 'account', :action => 'new'%>
+		</div>
+</div>

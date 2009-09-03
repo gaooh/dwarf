@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<title><%= @content_for_header_title ||= "クラウドソーシングサービス『こーびっとさん』 by DRECOM Sys.Dev.One Group" %></title>
+		<meta name="keywords" content="drecom, aprilfool, ドリコム, エイプリルフール, 2008年4月1日," />
+		<meta name="author" content="Drecom Co.,Ltd System Develop 1 Group" />
+		<meta name="description" content="株式会社ドリコム　システム開発1グループが2008年4月1日限定でオープンした新サービス。日常の仕事をクラウドソーシングであなたも解消できます" />
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="<%= url_for(:controller => 'portal', :action => 'rss') %>" />
+		<%= stylesheet_link_tag 'import' %>
+		<%= stylesheet_link_tag 'app' %>
+		<%= javascript_include_tag :defaults %>
+		<script type="text/javascript" src="http://s.hatena.ne.jp/js/HatenaStar.js"></script>
+		<script type="text/javascript">
+		Hatena.Star.EntryLoader.headerTagAndClassName = ['span','todo_title'];
+		Hatena.Star.Token = '3ad173eaf350a40416e2cd852ecbde87ef710f9e';
+		</script>
+		
+	</head>
+
+	<body>
+		<div id="container">
+
+<!--■■■　ヘッダー　■■■-->
+			<div id="header">
+				<div class="logo"><a href="/"><%= image_tag 'logo.gif', :alt => "クラウドソーシングサービス『こーびっとさん』"%></a></div>
+				<h1>株式会社ドリコム　システム開発1グループが2008年4月1日限定でオープンした新サービス。日常の仕事をクラウドソーシングであなたも解消できます（！？）</h1>
+				<div class="header_graph">
+					<div class="graph_number">
+						<span class="done">処理済み： <%= @count_finish_todo %></span>
+						<span class="rate"><%= @task_rate.round %></span>%
+						<span class="total">本日のToDo： <%= @count_all_todo %></span>
+					</div>
+					<div class="graph_bar">
+						<a href="#graph">
+							<span class="graph_left">&nbsp;</span>
+							<span class="done">
+								<%= image_tag 'header_graph/graph_bar_done.gif', :width => done_length, :height => "21px", :alt => "処理済み"%>
+							</span>
+							<span class="graph_center">&nbsp;</span>
+							<span class="undo">
+								<%= image_tag 'header_graph/graph_bar_undo.gif', :width => undo_length, :height => "21px", :alt => "未処理"%>
+							</span>
+							<span class="graph_right">&nbsp;</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			
+			<%= render :partial => 'layouts/message' %>
+			
+			<%= yield  %>
+			
+<!--■■■　ドリコムフッター　■■■-->
+
+<!--footer --> 
+
+<div id="footer"> 
+<span class="footermenu"> 
+<a href="http://www.drecom.co.jp/" target="_blank"><img src="http://www.drecom.co.jp/images/footer_img/footer_logo.gif" alt="DRECOM/ドリコム" width="89" height="12" border=0></a> 
+ <span class="footerlink1"><nobr><a href="http://www.drecom.co.jp/privacy/" onClick="return openPermLink('http://www.drecom.co.jp/privacy/', true);">プライバシーポリシー</a></nobr></span> 
+</span> 
+<a href="http://privacymark.jp/" target="_blank"><img src="http://www.drecom.co.jp/images/footer_img/p_mark.gif" alt="プライバシーマーク" width="70" height="70" id=pmark border=0></a> 
+ 
+<div class="footerlink2"> 
+<dl> 
+	<dt>ドリコムグループ提供サービス<span>：</span></dt> 
+	<dd> 
+	<ul> 
+	<li><a href="http://office.drecom.co.jp/" target="_blank" title="ドリコムブログオフィス">社内ブログ・SNS</a><span>|</span></li> 
+	<li><a href="http://sns.drecom.co.jp/" target="_blank" title="ドリコムSNS">SNS構築</a><span>|</span></li> 
+	<li><a href="http://cms.drecom.co.jp/"  target="_blank" title="ドリコムCMS">CMS</a><span>|</span></li> 
+	<li><a href="http://blogset.drecom.co.jp/lp/set_lp.html" title="ドリコムブログセット" target="_blank">クチコミブログ</a><span>|</span></li> 
+	<li><a href="http://spacehunter.jp/" title="スペースハンター&#8482;">インターネット広告</a></li> 
+	</ul></dd> 
+	
+	<dd><ul> 
+	<li><a href="http://rss.drecom.jp/" target="_blank" title="ドリコムRSS">RSS</a><span>|</span></li> 
+	<li><a href="http://monolist.drecom.jp/" target="_blank" title="モノリス">クチコミレビュー</a><span>|</span></li> 
+	<li><a href="http://blog.drecom.jp/" target="_blank" title="ドリコムブログ">ブログ</a><span>|</span></li> 
+	<li><a href="http://career.drecom.jp/" target="_blank" title="ドリコムキャリアサーチ">求人情報の検索</a><span>|</span></li> 
+	<li><a href="http://engineer.jobboard.drecom.jp/" target="_blank" title="ドリコムジョブボード(β)">ITエンジニアの転職</a></li> 
+	</ul> 
+	</dd> 
+</dl> 
+<div style="clear:left"> </div> 
+<dl> 
+	<dt>ドリコムグループ会社<span>：</span></dt> 
+	<dd> 
+	<ul> 
+	<li><a href="http://www.drecom.co.jp/" target="_blank" title="ドリコム">ドリコム</a><span>|</span></li> 
+	<li><a href="http://dgm.co.jp/" target="_blank" title="ドリコムジェネレーティッドメディア">ドリコムジェネレーティッドメディア</a><span>|</span></li> 
+	<li><a href="http://www.drecom-mkt.co.jp/" target="_blank" title="ドリコムマーケティング">ドリコムマーケティング</a><span>|</span></li> 
+	<li><a href="http://www.j-ken.co.jp/" target="_blank" title="ジェイケン">ジェイケン</a></li> 
+	</ul> 
+	</dd> 
+</dl> 
+</div> 
+<div class="cl">&nbsp;</div>
+<span class="footerbanner">Copyright &copy; 2001-2008 Drecom Co., Ltd All Rights Reserved.  </span> 
+</div> 
+
+<!--/footer --> 
+
+
+		</div>
+	</body>
+
+</html>
+

@@ -1,0 +1,69 @@
+<h1>依頼内容</h1>
+
+<% if @dwarf_todo.to_a.empty? %>
+割当済みのタスクはないよー
+
+<% else %>
+<% @dwarf_todo.each do |@todo| %>
+	<%= @todo.todo %>
+
+<div id="photoList"></div>
+<iframe id='frame' name="frame" style="display: none;"></iframe>
+<div id="uploadForm">
+  <% form_tag({:action =>'photo_create'}, {:name=>'photo', "target"=>"frame", :multipart => true}) do %>
+	  <%= file_column_field 'photo', 'filename' %>
+	  <%= submit_tag "登録", :class=>"submit" %>
+  <% end %>	
+</div>
+
+<% form_tag :action => 'answer' do %>
+  <%= hidden_field 'answer', 'page', :value => params[:page] %>
+
+  <%= render :partial => 'answer_form' %>
+	
+  <%= submit_tag "回答" %>
+　　<%= submit_tag "スキップ", :name => :skip %>
+　　<%= submit_tag "削除", :name => :delete %>
+<% end %>
+<% end %>
+<% end %>
+
+<div class="section entry" id="entry000005">
+
+<h1>やった仕事一覧</h1>
+
+<table>
+  <tr>
+    <th>依頼者</th>
+	<th>TODO</th>
+	<th>仕事内容</th>
+	<th>画像</th>
+	<th>解決？</th>
+  </tr>
+  
+<% for todo_history in @todo_histories %>
+  <tr>
+    <td><%= todo_history.todo.user.nickname %></td>
+	<td><%= todo_history.todo.todo %></td>
+	<td><%= todo_history.message %></td>
+	<td><%= image_tag url_for_file_column(todo_history.photo, 'filename', 'thumb') unless todo_history.photo.nil? %></td>
+	<td><%= todo_history.todo.finish_flag %></td>
+  </tr>
+<% end %>
+</table>
+
+<h1>未処理一覧</h1>
+
+<table>
+  <tr>
+    <th>依頼者</th>
+	<th>TODO</th>
+  </tr>
+  
+<% for todo in @todos %>
+  <tr>
+    <td><%= todo.user.nickname %></td>
+	<td><%= todo.todo %></td>
+  </tr>
+<% end %>
+</table>

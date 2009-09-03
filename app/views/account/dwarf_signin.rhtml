@@ -1,0 +1,7 @@
+<h1>コービットさんログイン</h1>
+
+<% form_tag :action=> "dwarf_login" do %>
+	<%= text_field "dwarf", "name", :size => 20 %><br/>
+	<%= password_field "dwarf", "password", :size => 20 %><br/>
+	<%= submit_tag 'ログイン' %>
+<% end %>

@@ -1,0 +1,2 @@
+page.insert_html :bottom, 'addTodoList', render(:partial => 'new_form')
+page.visual_effect :highlight, "addTodoList",  :duration => 0.6

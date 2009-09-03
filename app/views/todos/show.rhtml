@@ -1,0 +1,35 @@
+<% content_for(:header_title) do %>
+<%= @todo.todo %> - 『こーびっとさん』
+<% end %>
+
+<div id="todoList">
+	<div class="title">
+		お仕事
+	</div>
+	<div class="contents todo_entry">
+		<ul>
+			<li class="done">
+				<span class="todo_title"><%= link_star_to(@todo) %></span>
+				<span class="author">
+					by&nbsp;<%= link_to @todo.user.nickname, :controller => :todos, :action => :user, :id => @todo.user.nickname %>
+				</span>
+			</li>
+				<% unless @todo.todo_histories.empty? %>
+				  	<ul>
+				  	<% for history in @todo.todo_histories %>
+						<li><%= history.message %> 
+							<%= image_tag url_for_file_column(history.photo, 'filename', 'thumb')  unless history.photo.nil? %> </li>
+				  	<% end %>
+				    </ul>
+				<% end %>
+		</ul>		
+		
+		<div class="icon_explain">
+			<ul>
+				<li class="done">「Co-Bit3」エンジンにより、ToDoが完了したものです。</li>	
+				<li class="undo">未処理のToDoです。</li>
+				<li class="report">「Co-Bit3」エンジンにより、どのように処理したかのレポートです。なぜ靴アイコンなのかは謎。</li>
+			</ul>
+		</div>
+	</div>
+</div>

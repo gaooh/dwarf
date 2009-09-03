@@ -1,0 +1,20 @@
+xml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+xml.rss('version' => '2.0') do
+  xml.channel do
+    xml.title @feed_title
+    xml.link(request.protocol + request.host_with_port + url_for(:rss => nil))
+    xml.description(@feed_title)
+    xml.language "jp-jp"
+    xml.ttl "40"
+    # RFC-882 datetime example: Tue, 10 Jun 2003 04:00:00 GMT
+    xml.pubDate(Time.now.strftime("%a, %d %b %Y %H:%M:%S %Z"))
+    @todos.each do |todo|
+      xml.item do
+        xml.title(todo.todo)
+        xml.link(APP_CONFIG[:url] + url_for(:controller => :todos, :action => :show, :id => todo.id))
+        xml.description(APP_CONFIG[:url] + url_for(:controller => :todos, :action => :show, :id => todo.id))
+        xml.guid(APP_CONFIG[:url] + url_for(:controller => :todos, :action => :show, :id => todo.id))
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+
+mongrel_rails start -d -e production -p 4000
+
+mysqladmin -u root create dwarf_development
+$ mysql -u  root  
+GRANT ALL ON dwarf_development.* TO dwarf@localhost IDENTIFIED BY 'dwarf';
+
+mysqladmin -u root create dwarf_production
+$ mysql -u  root  
+GRANT ALL ON dwarf_production.* TO dwarf@localhost IDENTIFIED BY 'dwarf';
+
+sudo gem install twitter4r
+gem install gruff
+
+insert into dwarves (name, image_id) values ('test1', 1);
+insert into dwarves (name, image_id) values ('test2', 1);
+insert into dwarves (name, image_id) values ('test3', 1);
+
+gem install capistrano --include-dependencies

@@ -1,0 +1,8 @@
+<% for column in TodoHistory.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @todo_history.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @todo_history %> |
+<%= link_to 'Back', :action => 'list' %>

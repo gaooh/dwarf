@@ -1,0 +1,2 @@
+page.replace_html 'addMessage', '空白で登録することはできません。'
+page.visual_effect :highlight, "addMessage",  :duration => 0.6

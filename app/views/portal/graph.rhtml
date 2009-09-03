@@ -1,0 +1,11 @@
+<% content_for(:header_title) do %>
+働き具合 - 『こーびっとさん』
+<% end %>
+<div id="todoList">
+	<div class="title">
+		こーびっとさんの働き具合
+	</div>
+	<div class="contents">
+		<img src="<%= url_for :action=>'cobit3_graph' %>">
+	</div>
+</div>

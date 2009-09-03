@@ -1,0 +1,2 @@
+module OpenIdAccountHelper
+end

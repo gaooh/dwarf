@@ -1,0 +1,26 @@
+<ul id="todo_list">
+	<% for @todo in @todos %>
+	<li class="<% if @todo.finish_flag %>done<% else %>undo<% end %>">
+		<span class="todo_title">
+			<% if @todo.finish_flag %>
+				<s><%= @todo.todo %></s>
+			<% elsif @todo.todo.blank? %>
+				<% form_remote_tag :url => { :action => 'add' } do %>
+					<%= text_field("todo", "todo") %><%= submit_tag '追加' %>
+				<% end %>
+			<% else %>
+				<%= in_place_editor_field :todo, 'todo', {}, { :save_text=>"保存", :cancel_text=>"取消" } %>
+			<% end %>
+		</span>
+	</li>
+		<% unless @todo.todo_histories.empty? %>
+		  	<ul>
+		  	<% for history in @todo.todo_histories %>
+				<li><%= history.message %> 
+					<%= image_tag url_for_file_column(history.photo, 'filename', 'thumb')  unless history.photo.nil? %> 
+					by <%= history.dwarf.name %></li>
+		  	<% end %>
+		    </ul>
+	   <% end %>
+	<% end %>
+</ul>

@@ -1,0 +1,16 @@
+<%= error_messages_for 'todo_history' %>
+
+<!--[form:todo_history]-->
+<p><label for="todo_history_message">Message</label><br/>
+<%= text_field 'todo_history', 'message'  %></p>
+
+<p><label for="todo_history_created_at">Created at</label><br/>
+<%= datetime_select 'todo_history', 'created_at'  %></p>
+
+<p><label for="todo_history_updated_at">Updated at</label><br/>
+<%= datetime_select 'todo_history', 'updated_at'  %></p>
+
+<p><label for="todo_history_deleted_at">Deleted at</label><br/>
+<%= datetime_select 'todo_history', 'deleted_at'  %></p>
+<!--[eoform:todo_history]-->
+
